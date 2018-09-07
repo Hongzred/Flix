@@ -12,12 +12,24 @@ import AlamofireImage
 
 class NowPlayingViewController: UIViewController,UITableViewDataSource {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     var movies: [[String: Any]] = []
     var refreshControl: UIRefreshControl!
     
+    // Start the activity indicator
+   
+    
+    // Stop the activity indicator
+    // Hides automatically if "Hides When Stopped" is enabled
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 200
+
+        
         
         refreshControl = UIRefreshControl()
         refreshControl .addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
@@ -49,8 +61,11 @@ class NowPlayingViewController: UIViewController,UITableViewDataSource {
             }
             
         }
+//        activityIndicator.center = self.view.center
+//         activityIndicator.startAnimating()
         // Do any additional setup after loading the view.
         task.resume()
+//        activityIndicator.stopAnimating()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
